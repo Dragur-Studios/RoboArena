@@ -47,27 +47,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        PhotonNetwork.JoinLobby(TypedLobby.Default);
+        //PhotonNetwork.JoinLobby(TypedLobby.Default);
+        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers=1});
     }
-
-    public override void OnJoinedLobby()
-    {
-        bool isPlayerAuthenticated = true;
-        
-        if(isPlayerAuthenticated) {
-            PhotonNetwork.LoadLevel("multiplayer_lobby");
-        }
-        else
-        {
-            PhotonNetwork.LoadLevel("multiplayer_authentication");
-        }
-    }
-
-    public override void OnLeftLobby()
-    {
-        
-    }
-
 
 
 

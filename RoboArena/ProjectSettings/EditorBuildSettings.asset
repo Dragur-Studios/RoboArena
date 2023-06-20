@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Workspace_Multiplayer/multiplayer_root.unity
     guid: 55c2a5fa6352a7e4f950a45085158333
   - enabled: 1
-    path: Assets/Scenes/Workspace_Multiplayer/multiplayer_lobby.unity
+    path: Assets/Scenes/Workspace_Multiplayer/player_workshop.unity
     guid: e56ed5ce855c9e242b8bde132798c7cb
   - enabled: 1
     path: Assets/Scenes/Workspace_Multiplayer/multiplayer_authentication.unity
