@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Workspace_Multiplayer/multiplayer_root.unity
-    guid: 55c2a5fa6352a7e4f950a45085158333
-  - enabled: 1
     path: Assets/Scenes/Workspace_Multiplayer/player_workshop.unity
     guid: e56ed5ce855c9e242b8bde132798c7cb
   - enabled: 1
-    path: Assets/Scenes/Workspace_Multiplayer/multiplayer_authentication.unity
-    guid: f3d8e379c4a91e546bf517cdfa8a5f63
+    path: Assets/Scenes/Workspace_Multiplayer/player_arena_4.unity
+    guid: 3fee3882ae8a8814fa86d508e8ee900d
+  - enabled: 1
+    path: Assets/Scenes/Workspace_Multiplayer/player_arena_2.unity
+    guid: f29e120b5c9d2064ea5b48f8a264e84b
   m_configObjects: {}
