@@ -36,14 +36,12 @@ public class MatchButton : MonoBehaviourPunCallbacks
         {
             case MatchType.Solo_2P:
                 {
-                    TypedLobby twoPlayerArena = new TypedLobby("twoPlayerArena", LobbyType.Default);
-
-                    PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 2 }, TypedLobby.Default);
+                    CreateRoom(2);
                 }
                 break;
             case MatchType.Solo_4P:
                 {
-                    PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
+                    CreateRoom(4);
                 }
                 break;
         }
@@ -55,17 +53,37 @@ public class MatchButton : MonoBehaviourPunCallbacks
         {
             case MatchType.Solo_2P:
                 {
-                    //PhotonNetwork.JoinRandomRoom(null, 2, MatchmakingMode.FillRoom, TypedLobby.Default, null);
-                    PhotonNetwork.JoinOrCreateRoom(null, new RoomOptions() { MaxPlayers = 2 }, TypedLobby.Default, null) ;
+                    JoinOrCreateRoom(2);
                 }
                 break;
             case MatchType.Solo_4P:
                 {
-                    PhotonNetwork.JoinOrCreateRoom(null, new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default, null) ;
+                    JoinOrCreateRoom(4);
                 }
                 break;
         }
     }
+
+    private void JoinOrCreateRoom(int requiredRoomSize)
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)requiredRoomSize;
+
+        TypedLobby typedLobby = new TypedLobby("CustomLobby", LobbyType.Default);
+
+        PhotonNetwork.JoinOrCreateRoom(typedLobby.Name, roomOptions, typedLobby);
+    }
+
+    private void CreateRoom(int requiredRoomSize)
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = requiredRoomSize; 
+
+        TypedLobby typedLobby = new TypedLobby("CustomLobby", LobbyType.Default);
+
+        PhotonNetwork.CreateRoom(null, roomOptions, typedLobby);
+    }
+
 
     // Update is called once per frame
     void Update()
