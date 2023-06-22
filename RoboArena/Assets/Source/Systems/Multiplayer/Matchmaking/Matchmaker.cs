@@ -8,6 +8,8 @@ using System.ComponentModel;
 
 public class Matchmaker : MonoBehaviourPunCallbacks
 {
+    const string BATTLENET = "https://www.battlenetwork.com";
+
     // temporary
     [ReadOnly, SerializeField] string gameVersion = "0.1.0c";
     [ReadOnly, SerializeField] string localPlayerUsername = "Player";
@@ -18,7 +20,6 @@ public class Matchmaker : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-
         PhotonNetwork.AutomaticallySyncScene = true;
 
         instance = this;
@@ -31,7 +32,6 @@ public class Matchmaker : MonoBehaviourPunCallbacks
     {
         Debug.Log($"Failed to Connect to Photon status-code: <color=red>{cause}</color> serverAddress: {PhotonNetwork.ServerAddress}");
         isConnecting = false;
-
         pcUI.CloseBrowser();
     }
 
@@ -52,12 +52,23 @@ public class Matchmaker : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("<color=green>Opening BattleNetwork</color>");
-        pcUI.OpenBrowser("https://www.battlenetwork.com");
+        pcUI.OpenPage(BATTLENET);
+    }
+
+    public override void OnLeftLobby()
+    {
+        pcUI.CloseBrowser();
     }
 
     public override void OnJoinedRoom()
     {
-        pcUI.OpenBrowser("https://www.battlenetwork.com/arena_list");
+        string arenaList = BATTLENET + "/arena_list";
+        pcUI.OpenPage(arenaList);
+    }
+
+    public override void OnLeftRoom()
+    {
+        pcUI.OpenPage(BATTLENET);
     }
 
     public override void OnPlayerEnteredRoom(Player other)
@@ -85,18 +96,6 @@ public class Matchmaker : MonoBehaviourPunCallbacks
 
     }
 
-    private void Update()
-    {
-
-    }
-
-    public override void OnLeftRoom()
-    {
-        
-    }
-
-
-
     public static void Disconnect()
     {
         PhotonNetwork.LeaveLobby();
@@ -113,11 +112,14 @@ public class Matchmaker : MonoBehaviourPunCallbacks
 
             instance.isConnecting = PhotonNetwork.ConnectUsingSettings();
         }
+        else
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
 
     internal static List<Player> GetRoomPlayers()
     {
-        
         List<Player> list = new List<Player>();
 
         foreach (var kvp in PhotonNetwork.CurrentRoom.Players)

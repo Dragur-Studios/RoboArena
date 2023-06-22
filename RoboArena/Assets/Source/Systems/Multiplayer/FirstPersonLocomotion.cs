@@ -24,6 +24,9 @@ public class FirstPersonLocomotion : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GetComponent<InteractionHandler>().isInteracting)
+            return;
+
         Vector2 movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         Vector3 direction = Vector3.zero;

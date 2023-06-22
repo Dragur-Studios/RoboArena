@@ -11,8 +11,16 @@ public class PCUIManager : MonoBehaviour
         browser.Close();
     }
 
+    public void OpenPage(string url)
+    {
+        browser.OpenPage($"{url}");
+    }
+
     public void OpenBrowser(string url="")
     {
+        if (browser.isOpen)
+            return;
+
         browser.Open();
         browser.OpenPage($"{url}");
     }

@@ -23,6 +23,9 @@ public class ViewController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<InteractionHandler>().isInteracting)
+            return;
+
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         // handle yaw

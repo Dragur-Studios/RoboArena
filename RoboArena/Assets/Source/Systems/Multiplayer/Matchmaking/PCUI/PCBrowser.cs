@@ -15,7 +15,8 @@ public class PCBrowser : MonoBehaviour
 
     string Current { get => back_history.Peek(); }
 
-    
+    public bool isOpen { get; private set; }
+
     private void Awake()
     {
         if(instance != null)
@@ -30,14 +31,20 @@ public class PCBrowser : MonoBehaviour
     }
 
 
-
     public void Open()
     {
-        gameObject.SetActive(true);
+        if (isOpen)
+            return;
+
+        isOpen = true;
+
+        gameObject.SetActive(isOpen);
     } 
     public void Close()
     {
         gameObject.SetActive(false);
+        isOpen = false;
+        
         FindObjectOfType<InteractionHandler>().isInteracting = false;
     }
 

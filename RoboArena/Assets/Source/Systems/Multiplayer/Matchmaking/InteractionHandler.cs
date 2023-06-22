@@ -13,6 +13,12 @@ public class InteractionHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isInteracting)
+        {
+            DestroyPopup();
+            return;
+        }
+
         Camera cam = GetComponentInChildren<Camera>();
 
         Vector2 midScreen = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
