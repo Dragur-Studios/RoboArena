@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781cc897cf8675041a751163b51f97dd, type: 3}
   m_Name: HDRenderPipelineGlobalSettings
   m_EditorClassIdentifier: 
-  m_DefaultVolumeProfile: {fileID: 11400000, guid: 059f0e825f0094f47a18982091fb28b8,
+  m_DefaultVolumeProfile: {fileID: 11400000, guid: 4c55739e7899a6d44bc87346758dcd29,
     type: 2}
-  m_LookDevVolumeProfile: {fileID: 11400000, guid: a14d1a14027ffc34bbb9fc29b0e53212,
+  m_LookDevVolumeProfile: {fileID: 11400000, guid: ad98434bc709ee747a78d2306aeb69be,
     type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
-      data1: 72198260625768269
-      data2: 13763000477350330392
+      data1: 72198329345245005
+      data2: 13763000478424072216
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -63,7 +63,8 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7,
     type: 2}
-  m_RenderPipelineRayTracingResources: {fileID: 0}
+  m_RenderPipelineRayTracingResources: {fileID: 11400000, guid: ba6e7f30e5cffc249a8bf7ee5756c196,
+    type: 2}
   beforeTransparentCustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
   afterPostProcessBlursCustomPostProcesses: []

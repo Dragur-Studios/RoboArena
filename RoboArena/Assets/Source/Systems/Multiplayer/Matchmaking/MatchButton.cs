@@ -36,6 +36,8 @@ public class MatchButton : MonoBehaviourPunCallbacks
         {
             case MatchType.Solo_2P:
                 {
+                    TypedLobby twoPlayerArena = new TypedLobby("twoPlayerArena", LobbyType.Default);
+
                     PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 2 }, TypedLobby.Default);
                 }
                 break;
@@ -53,12 +55,13 @@ public class MatchButton : MonoBehaviourPunCallbacks
         {
             case MatchType.Solo_2P:
                 {
-                    PhotonNetwork.JoinRandomRoom(null, 2);
+                    //PhotonNetwork.JoinRandomRoom(null, 2, MatchmakingMode.FillRoom, TypedLobby.Default, null);
+                    PhotonNetwork.JoinOrCreateRoom(null, new RoomOptions() { MaxPlayers = 2 }, TypedLobby.Default, null) ;
                 }
                 break;
             case MatchType.Solo_4P:
                 {
-                    PhotonNetwork.JoinRandomRoom(null, 4);
+                    PhotonNetwork.JoinOrCreateRoom(null, new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default, null) ;
                 }
                 break;
         }
