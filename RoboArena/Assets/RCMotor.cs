@@ -1,21 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-
 [RequireComponent(typeof(RCMotorReciever))]
 public class RCMotor : MonoBehaviour
 {
-    RCMotorReciever reciever;
 
     [Header("Settings")]
     [SerializeField] float maxTorque = 500.0f;
     [SerializeField] float maxTurnRadius = 30.0f;
     [SerializeField] float maxBrakeForce = 99999.99f;
-    [Header("Axels")]
-    public List<AxelInformation> axels = new List<AxelInformation>();
 
+    [Header("Axels")]
+    [SerializeField] List<AxelInformation> axels = new List<AxelInformation>();
+
+    [Header("State")]
+    [SerializeField, ReadOnly] bool isPowerdOn = false;
+
+
+    RCMotorReciever reciever;
     private void Start()
     {
         reciever = GetComponent<RCMotorReciever>();
@@ -40,8 +45,16 @@ public class RCMotor : MonoBehaviour
     
     }
 
+    internal void PowerOn()
+    {
+        isPowerdOn = true;
+    }
+
     private void Update()
     {
+        if (!isPowerdOn)
+            return;
+
         foreach (var axel in axels)
         {
             if (axel.isSteering)
@@ -59,7 +72,6 @@ public class RCMotor : MonoBehaviour
                     axel.wheels[i].motorTorque = reciever.Trottle * maxTorque;
                 }
             }
-
 
             if (axel.isBrake)
             {
